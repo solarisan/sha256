@@ -162,10 +162,10 @@ int main(){
     compress.push_back(0x1f83d9ab);
     compress.push_back(0x5be0cd19);
 
-    std::uint32_t myb=4294967296-5;
-    std::uint32_t t1=0b10101010101010101010101010101010;
-    std::uint32_t t2=0b11111111111111111111111111111111;
-    std::uint32_t t3=0b00000000000000000000000000000000;
+    // std::uint32_t myb=4294967296-5;
+    // std::uint32_t t1=0b10101010101010101010101010101010;
+    // std::uint32_t t2=0b11111111111111111111111111111111;
+    // std::uint32_t t3=0b00000000000000000000000000000000;
     //cout<<std::bitset<32>(majority(&t1,&t2,&t3));
     //cout<<std::bitset<32>(k[0]);
     const char *str="";
@@ -261,11 +261,11 @@ int main(){
         fin+=s;
     }   
 
-    if(si<512){
-        //cout<<(std::bitset<512>(TextToBinaryString(str))<<512-si).flip(512-si-1)+std::bitset<512>(si);
-        //cout<<(std::bitset<512>(TextToBinaryString(str))<<512-si).flip(512-si1);
-    }
-    std::bitset<512> we {TextToBinaryString(str)};
+    // if(si<512){
+    //     //cout<<(std::bitset<512>(TextToBinaryString(str))<<512-si).flip(512-si-1)+std::bitset<512>(si);
+    //     //cout<<(std::bitset<512>(TextToBinaryString(str))<<512-si).flip(512-si1);
+    // }
+    // std::bitset<512> we {TextToBinaryString(str)};
     
     //anothe idea is not to make the 512 bitset at all, instead look at the string in bunchs of 32 bit from the beggining of the process!
     // for (int x=0; x<35; x++)
