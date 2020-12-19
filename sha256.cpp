@@ -4,8 +4,8 @@
 #include <string>
 #include <bitset>
 #include <sys/stat.h>
-#include<sstream>
-
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -185,7 +185,7 @@ int main(){
 
     vector<std::uint32_t> words;
     string st=work.to_string();
-    for (int x=0;x<64;x++){
+    for (int x=0; x<64; x++){
         string newst=st.substr(0,32);
         words.push_back(std::stoul(newst,nullptr,2));
         //unsigned long bb=std::stoul(newst,nullptr,2);
@@ -196,12 +196,12 @@ int main(){
             break;
         }
     }
-    cout<<"\n\n word size before modification: "<<words.size()<<"\n\n";
+    cout << "\n\n word size before modification: " << words.size() << "\n\n";
     for (int item=0;item<16;item++){
-        cout<<bitset<32>(words.at(item))<<endl;
+        cout << bitset<32>(words.at(item)) << endl;
     }
     cout<<"\n-------------------- word schedule 64 words:\n";
-    for(int w=16;w<64;w++){
+    for(int w=16; w<64; w++){
         std::uint32_t w2=words.at(w-2);
         std::uint32_t w7=words.at(w-7);
         std::uint32_t w15=words.at(w-15);
@@ -212,14 +212,14 @@ int main(){
         words.push_back(w2+w7+w15+w16);
     }
 
-    for (int item=0;item<64;item++){
-        cout<<bitset<32>(words.at(item))<<endl;
+    for (int item=0; item<64; item++){
+        cout << bitset<32>(words.at(item)) << endl;
     }
 
-    for(int w=0;w<64;w++){
-        cout<<"\n\n--------------- in step: "<<w<<endl;
-        for(int final=0; final<8;final++){   
-            cout<<bitset<32>(compress.at(final))<<endl;
+    for(int w=0; w<64; w++){
+        cout << "\n\n--------------- in step: " << w << endl;
+        for(int final=0; final<8; final++){   
+            cout << bitset<32>(compress.at(final)) << endl;
         }
         std::uint32_t working0=words.at(w);
         std::uint32_t key0=k.at(w);
@@ -236,30 +236,30 @@ int main(){
         std::uint32_t task1=ee+choice(&e,&f,&g)+h+key0+working0;
         std::uint32_t aa=capsigma0(a);
         std::uint32_t task2=aa+majority(&a,&b,&c);
+
         compress.emplace(compress.begin(),zero);
         compress.at(0)=task1+task2;
         compress.at(4)+=task1;
-        cout<<"\n\n task 1+2:  "<<bitset<32>(task1+task2)<<"\n task1:  "<<bitset<32>(task1)<<endl;
+        
+        cout << "\n\n task 1+2:  " << bitset<32>(task1+task2) << "\n task1:  " << bitset<32>(task1) << endl;
     }
     
-    for(int sum=0; sum<8;sum++){   
+    for(int sum=0; sum<8; sum++){   
         compress.at(sum)+=inital.at(sum); 
     }
 
     cout<<"\n\n the final hash:-----------------------------"<<endl;
-    for(int final=0; final<8;final++){   
-        cout<<bitset<32>(compress.at(final))<<endl;
+    for(int final=0; final<8; final++){   
+        cout << bitset<32>(compress.at(final)) << endl;
     }
 
     cout<<"\n\nconverting to hex-----------------------------"<<endl;
-    stringstream ss;
-    for(int final=0; final<8;final++){
-        ss<<compress.at(final);
-        string s;
-        ss>>s;
-        string fin;
-        fin+=s;
+
+    for(int final=0; final<8; final++){        
+        cout << uppercase << setw(sizeof(std::uint32_t)*2) << std::hex<<compress.at(final);       
     }   
+    
+
 
     // if(si<512){
     //     //cout<<(std::bitset<512>(TextToBinaryString(str))<<512-si).flip(512-si-1)+std::bitset<512>(si);
