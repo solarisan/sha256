@@ -179,10 +179,10 @@ void calculator(const char *nonce){
 
     // cout<<"\n\nconverting to hex-----------------------------"<<endl;
 
-    for(int z=0; z<8; z++){        
-        cout << uppercase << setw(sizeof(std::uint32_t)*2) << std::hex << compress.at(z);       
-    }   
-    cout <<endl;
+    // for(int z=0; z<8; z++){        
+    //     cout << uppercase << setw(sizeof(std::uint32_t)*2) << std::hex << compress.at(z);       
+    // }   
+    // cout <<endl;
 
 
 }
@@ -197,7 +197,7 @@ int main(){
         cout<<"error in reading file"<<endl;  // An error occurred   
     }
 
-    for (int x=0; x<10000;x++){
+    for (int x=0; x<100000;x++){
     const char *nonce="hello john smith hope you are doing well";
     calculator(nonce);
 
